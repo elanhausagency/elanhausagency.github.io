@@ -132,3 +132,8 @@ function renderFooter() {
     );
 }
 renderFooter();
+
+const link = document.createElement("link");
+link.rel = "icon";
+link.href = "src/logos/blue-square-logo.png"; // works with .png directly, no .ico needed
+document.head.appendChild(link);
