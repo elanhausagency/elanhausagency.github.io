@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services — Elan Haus Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/index.css" />
+    <style>
+      /* ── SERVICES PAGE ── */
+      .services-intro {
+        background: var(--surface);
+      }
+      .services-intro p {
+        font-size: 0.82rem;
+        line-height: 2;
+        color: var(--muted);
+        max-width: 580px;
+        margin-top: 40px;
+      }
+
+      .service-list {
+        background: var(--black);
+        padding: 0 48px 120px;
+      }
+      .service-item {
+        display: grid;
+        grid-template-columns: 100px 1fr 1fr;
+        gap: 60px;
+        padding: 72px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        align-items: start;
+        transition: background 0.25s;
+      }
+      .service-item:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .service-item:hover {
+        background: rgba(17, 79, 237, 0.03);
+      }
+
+      .svc-item-num {
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.1em;
+        padding-top: 6px;
+      }
+      .svc-item-name {
+        font-family: var(--sans);
+        font-size: clamp(1.8rem, 3vw, 3rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+      .svc-item-name em {
+        font-style: italic;
+        color: var(--blue);
+      }
+      .svc-item-body p {
+        font-size: 0.78rem;
+        line-height: 2.1;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .svc-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+      .svc-tag {
+        font-family: var(--sans);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        border: 1px solid rgba(228, 255, 75, 0.25);
+        padding: 6px 14px;
+        background: rgba(228, 255, 75, 0.04);
+      }
+
+      @media (max-width: 768px) {
+        .services-intro {
+          padding: 72px 24px;
+        }
+        .service-list {
+          padding: 0 24px 80px;
+        }
+        .service-item {
+          grid-template-columns: 48px 1fr;
+          gap: 20px;
+          padding: 48px 0;
+        }
+        .svc-item-body {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav>
+      <a href="index.html" class="nav-logo"
+        ><img
+          src="src/logos/transparent-logo-with-agency.png"
+          alt="Elan Haus Agency"
+      /></a>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="index.html#brands">Brands</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Work With Us</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="about.html" class="mobile-link">About</a>
+      <a href="services.html" class="mobile-link">Services</a>
+      <a href="process.html" class="mobile-link">Process</a>
+      <a href="index.html#brands" class="mobile-link">Brands</a>
+      <a href="index.html#contact" class="mobile-cta mobile-link"
+        >Work With Us</a
+      >
+    </div>
+
+    <div class="page-hero">
+      <div>
+        <div class="page-hero-eyebrow">What We Offer</div>
+        <h1 class="page-hero-title">Full Suite<br />of <em>Influence</em></h1>
+      </div>
+    </div>
+
+    <section class="services-intro">
+      <div class="section-tag reveal">Our Capabilities</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Everything You<br />Need. <em>Nothing</em> You Don't.
+      </h2>
+      <p class="reveal reveal-delay-2">
+        From creator discovery to post-campaign reporting, Elan Haus handles the
+        full lifecycle of influencer marketing. Every service is available à la
+        carte or as part of a fully managed partnership.
+      </p>
+    </section>
+
+    <div class="service-list">
+      <div class="service-item reveal">
+        <div class="svc-item-num">01</div>
+        <div class="svc-item-name">Creator <em>Matching</em></div>
+        <div class="svc-item-body">
+          <p>
+            We pair brands with creators whose audience, aesthetic, and values
+            align with precision. Using proprietary data tools and human
+            judgment, we identify creators who will resonate — not just reach.
+          </p>
+          <p>
+            No guesswork. No spray-and-pray. Only curated, culture-aware
+            connections that convert.
+          </p>
+          <div class="svc-tags">
+            <span class="svc-tag">Audience Analysis</span
+            ><span class="svc-tag">Brand Fit Scoring</span
+            ><span class="svc-tag">Niche Expertise</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="svc-item-num">02</div>
+        <div class="svc-item-name">Campaign <em>Architecture</em></div>
+        <div class="svc-item-body">
+          <p>
+            From concept to completion, we design campaigns that feel organic
+            and perform like clockwork. Creative direction, timeline management,
+            platform strategy, and full-funnel reporting included.
+          </p>
+          <div class="svc-tags">
+            <span class="svc-tag">Creative Direction</span
+            ><span class="svc-tag">Multi-Platform</span
+            ><span class="svc-tag">Full-Funnel</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="svc-item-num">03</div>
+        <div class="svc-item-name">Deal <em>Negotiation</em></div>
+        <div class="svc-item-body">
+          <p>
+            We handle every aspect of contract negotiation, rights management,
+            usage licensing, and exclusivity agreements — ensuring both creators
+            and brands walk away with terms built for the long term.
+          </p>
+          <div class="svc-tags">
+            <span class="svc-tag">Contract Management</span
+            ><span class="svc-tag">IP & Rights</span
+            ><span class="svc-tag">Exclusivity</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="svc-item-num">04</div>
+        <div class="svc-item-name">Audience <em>Intelligence</em></div>
+        <div class="svc-item-body">
+          <p>
+            Deep-dive analytics on follower demographics, engagement quality,
+            sentiment mapping, and purchase intent signals. Know exactly who
+            you're reaching before you spend a dollar.
+          </p>
+          <div class="svc-tags">
+            <span class="svc-tag">Demographic Reports</span
+            ><span class="svc-tag">Fraud Detection</span
+            ><span class="svc-tag">Sentiment Analysis</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="svc-item-num">05</div>
+        <div class="svc-item-name">Luxury <em>Positioning</em></div>
+        <div class="svc-item-body">
+          <p>
+            Specialist expertise in luxury and premium brand categories. We
+            understand the unique codes, pacing, and sensibilities of
+            aspirational audiences and how to speak to them authentically.
+          </p>
+          <div class="svc-tags">
+            <span class="svc-tag">Luxury Verticals</span
+            ><span class="svc-tag">Brand Elevation</span
+            ><span class="svc-tag">Aspirational Tone</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item reveal">
+        <div class="svc-item-num">06</div>
+        <div class="svc-item-name">Performance <em>Reporting</em></div>
+        <div class="svc-item-body">
+          <p>
+            Transparent, real-time dashboards and post-campaign analysis.
+            Measure ROI, earned media value, reach, and sentiment shifts —
+            delivered in board-ready reports that tell a clear story.
+          </p>
+          <div class="svc-tags">
+            <span class="svc-tag">Live Dashboards</span
+            ><span class="svc-tag">EMV Calculation</span
+            ><span class="svc-tag">Board Reports</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <p class="testimonial-text">
+        "Elan Haus didn't just find us influencers — they found us the right
+        voices. The campaign exceeded every benchmark and created a cultural
+        moment we're still riding."
+      </p>
+      <div class="testimonial-attr">Isabelle Marchetti</div>
+      <div class="testimonial-brand">VP of Brand, Maison Aurore</div>
+    </div>
+
+    <section class="cta-section">
+      <div class="section-tag reveal">Get Started</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Ready to <em>Elevate</em><br />Your Brand?
+      </h2>
+      <p class="cta-sub reveal reveal-delay-2">
+        Tell us about your brand and we'll design the perfect partnership
+        strategy.
+      </p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="mailto:hello@elanhausagency.com" class="btn-primary"
+          >Start a Conversation</a
+        >
+        <a
+          href="process.html"
+          class="btn-outline"
+          style="border-color: rgba(0, 0, 0, 0.2); color: var(--black)"
+          >See Our Process</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img
+              src="src/logos/transparent-logo-with-agency.png"
+              alt="Elan Haus Agency"
+            />
+          </div>
+          <p class="footer-tagline">
+            The premier agency connecting the world's boldest creators with the
+            brands that define culture.
+          </p>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="index.html#brands">Partners</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">For Creators</div>
+          <ul class="footer-links">
+            <li><a href="index.html#contact">Apply to Join</a></li>
+            <li><a href="about.html">Our Standards</a></li>
+            <li><a href="index.html#contact">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">For Brands</div>
+          <ul class="footer-links">
+            <li><a href="index.html#contact">Start a Campaign</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 Elan Haus Agency. All rights reserved.
+        </div>
+        <div class="footer-socials">
+          <a href="#">Instagram</a><a href="#">LinkedIn</a
+          ><a href="#">TikTok</a>
+        </div>
+      </div>
+    </footer>
+    <script src="src/main.js"></script>
+  </body>
+</html>

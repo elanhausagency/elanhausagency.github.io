@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Process — Elan Haus Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/index.css" />
+    <style>
+      /* ── PROCESS PAGE ── */
+      .process-intro {
+        background: var(--surface);
+      }
+      .process-intro p {
+        font-size: 0.82rem;
+        line-height: 2;
+        color: var(--muted);
+        max-width: 560px;
+        margin-top: 40px;
+      }
+
+      .steps-section {
+        background: var(--black);
+        padding: 0 48px 120px;
+      }
+      .step-block {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 72px;
+        padding: 80px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        align-items: start;
+      }
+      .step-block:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .step-left {
+        text-align: center;
+      }
+      .step-big-num {
+        font-family: var(--sans);
+        font-size: 6rem;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(17, 79, 237, 0.25);
+        transition: -webkit-text-stroke-color 0.3s;
+      }
+      .step-block:hover .step-big-num {
+        -webkit-text-stroke-color: var(--blue);
+      }
+
+      .step-phase {
+        font-family: var(--sans);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 16px;
+      }
+      .step-title {
+        font-family: var(--sans);
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin-bottom: 32px;
+      }
+      .step-title em {
+        font-style: italic;
+        color: var(--blue);
+      }
+      .step-body p {
+        font-size: 0.8rem;
+        line-height: 2.1;
+        color: var(--muted);
+        margin-bottom: 18px;
+        max-width: 640px;
+      }
+      .step-body p strong {
+        color: var(--white);
+        font-weight: 500;
+      }
+      .step-box {
+        margin-top: 32px;
+        padding: 24px 28px;
+        border: 1px solid rgba(17, 79, 237, 0.2);
+        background: rgba(17, 79, 237, 0.04);
+      }
+      .step-box-label {
+        font-family: var(--sans);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 14px;
+      }
+      .step-box-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 28px;
+        list-style: none;
+      }
+      .step-box-items li {
+        font-size: 0.72rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .step-box-items li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--blue);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* TIMELINE */
+      .timeline-section {
+        background: var(--blue);
+        padding: 100px 48px;
+      }
+      .timeline-section .section-tag {
+        color: var(--yellow);
+      }
+      .timeline-section .section-tag::before {
+        background: var(--yellow);
+      }
+      .timeline-section .section-title {
+        color: var(--white);
+      }
+      .timeline-section .section-title em {
+        -webkit-text-stroke-color: var(--yellow);
+      }
+      .timeline-row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        margin-top: 60px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .tl-cell {
+        padding: 36px 28px;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        transition: background 0.3s;
+      }
+      .tl-cell:last-child {
+        border-right: none;
+      }
+      .tl-cell:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .tl-week {
+        font-family: var(--sans);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 12px;
+      }
+      .tl-phase {
+        font-family: var(--sans);
+        font-size: 1.2rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        margin-bottom: 10px;
+      }
+      .tl-desc {
+        font-size: 0.7rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (max-width: 768px) {
+        .process-intro {
+          padding: 72px 24px;
+        }
+        .steps-section {
+          padding: 0 24px 80px;
+        }
+        .step-block {
+          grid-template-columns: 60px 1fr;
+          gap: 24px;
+          padding: 56px 0;
+        }
+        .step-big-num {
+          font-size: 3.5rem;
+        }
+        .timeline-section {
+          padding: 72px 24px;
+        }
+        .timeline-row {
+          grid-template-columns: 1fr 1fr;
+        }
+        .tl-cell:nth-child(2n) {
+          border-right: none;
+        }
+        .tl-cell {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+      }
+      @media (max-width: 480px) {
+        .timeline-row {
+          grid-template-columns: 1fr;
+        }
+        .tl-cell {
+          border-right: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav>
+      <a href="index.html" class="nav-logo"
+        ><img
+          src="src/logos/transparent-logo-with-agency.png"
+          alt="Elan Haus Agency"
+      /></a>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="process.html" class="active">Process</a></li>
+        <li><a href="index.html#brands">Brands</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Work With Us</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="about.html" class="mobile-link">About</a>
+      <a href="services.html" class="mobile-link">Services</a>
+      <a href="process.html" class="mobile-link">Process</a>
+      <a href="index.html#brands" class="mobile-link">Brands</a>
+      <a href="index.html#contact" class="mobile-cta mobile-link"
+        >Work With Us</a
+      >
+    </div>
+
+    <div class="page-hero">
+      <div>
+        <div class="page-hero-eyebrow">How We Work</div>
+        <h1 class="page-hero-title"><em>Discovery</em><br />to Delivery</h1>
+      </div>
+    </div>
+
+    <section class="process-intro">
+      <div class="section-tag reveal">Our Methodology</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        A Process Built<br />on <em>Precision</em>
+      </h2>
+      <p class="reveal reveal-delay-2">
+        Every Elan Haus engagement follows a four-phase methodology developed
+        over 12 years. It's rigorous, transparent, and designed to deliver
+        results — every single time.
+      </p>
+    </section>
+
+    <div class="steps-section">
+      <div class="step-block reveal">
+        <div class="step-left"><div class="step-big-num">01</div></div>
+        <div class="step-right">
+          <div class="step-phase">Phase One</div>
+          <h2 class="step-title">Discovery &amp; <em>Strategy</em></h2>
+          <div class="step-body">
+            <p>
+              Every great campaign begins with deep understanding. Our
+              strategists immerse themselves in your brand — your history,
+              values, visual identity, target audience, and competitive
+              landscape.
+            </p>
+            <p>
+              We conduct a thorough <strong>brand audit</strong>, define
+              campaign objectives, and establish KPIs that guide everything that
+              follows. We also identify the creator archetypes most likely to
+              resonate with your audience.
+            </p>
+          </div>
+          <div class="step-box">
+            <div class="step-box-label">Deliverables</div>
+            <ul class="step-box-items">
+              <li>Brand Audit Report</li>
+              <li>Campaign Brief</li>
+              <li>KPI Framework</li>
+              <li>Creator Archetype Profile</li>
+              <li>Competitive Overview</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block reveal">
+        <div class="step-left"><div class="step-big-num">02</div></div>
+        <div class="step-right">
+          <div class="step-phase">Phase Two</div>
+          <h2 class="step-title">Creator <em>Curation</em></h2>
+          <div class="step-body">
+            <p>
+              Using our proprietary matching methodology, we identify and vet a
+              curated shortlist of creators. We analyse audience demographics,
+              engagement quality, content aesthetics, brand safety, and cultural
+              alignment.
+            </p>
+            <p>
+              Every creator is presented with a
+              <strong>detailed profile</strong> including audience breakdown,
+              engagement rates, past brand work, and a qualitative fit
+              assessment. You choose — we handle the rest.
+            </p>
+          </div>
+          <div class="step-box">
+            <div class="step-box-label">Deliverables</div>
+            <ul class="step-box-items">
+              <li>Creator Shortlist (3–10)</li>
+              <li>Audience Analytics Reports</li>
+              <li>Engagement Quality Scores</li>
+              <li>Brand Safety Assessment</li>
+              <li>Collaboration Format Rec.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block reveal">
+        <div class="step-left"><div class="step-big-num">03</div></div>
+        <div class="step-right">
+          <div class="step-phase">Phase Three</div>
+          <h2 class="step-title">Campaign <em>Execution</em></h2>
+          <div class="step-body">
+            <p>
+              Once creators are confirmed, we manage the entire lifecycle. We
+              negotiate contracts, prepare detailed creative briefs, coordinate
+              content review rounds, and manage the publishing schedule across
+              all platforms.
+            </p>
+            <p>
+              We act as the bridge between brand and creator — ensuring the
+              brief is followed while
+              <strong>protecting creative freedom</strong>, the ingredient that
+              makes influencer content actually perform.
+            </p>
+          </div>
+          <div class="step-box">
+            <div class="step-box-label">Deliverables</div>
+            <ul class="step-box-items">
+              <li>Signed Contracts</li>
+              <li>Creative Briefs</li>
+              <li>Content Review &amp; Approval</li>
+              <li>Publishing Schedule</li>
+              <li>Live Campaign Dashboard</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block reveal">
+        <div class="step-left"><div class="step-big-num">04</div></div>
+        <div class="step-right">
+          <div class="step-phase">Phase Four</div>
+          <h2 class="step-title">Amplification &amp; <em>Reporting</em></h2>
+          <div class="step-body">
+            <p>
+              Post-publish, we monitor performance in real time and identify
+              opportunities to amplify top-performing content through paid
+              boosting, cross-platform repurposing, and earned media outreach.
+            </p>
+            <p>
+              Every campaign concludes with a
+              <strong>comprehensive post-campaign report</strong> covering
+              reach, engagement, earned media value, sentiment analysis, and
+              strategic recommendations for next time.
+            </p>
+          </div>
+          <div class="step-box">
+            <div class="step-box-label">Deliverables</div>
+            <ul class="step-box-items">
+              <li>Performance Report</li>
+              <li>EMV Calculation</li>
+              <li>Sentiment Analysis</li>
+              <li>Content Rights Summary</li>
+              <li>Future Strategy Recs.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="timeline-section">
+      <div class="section-tag reveal">Typical Engagement</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Brief to Live<br />in <em>6 Weeks</em>
+      </h2>
+      <div class="timeline-row reveal reveal-delay-2">
+        <div class="tl-cell">
+          <div class="tl-week">Week 1–2</div>
+          <div class="tl-phase">Discovery</div>
+          <div class="tl-desc">Brand audit, brief, KPI setting</div>
+        </div>
+        <div class="tl-cell">
+          <div class="tl-week">Week 2–3</div>
+          <div class="tl-phase">Curation</div>
+          <div class="tl-desc">Creator research, vetting, shortlist</div>
+        </div>
+        <div class="tl-cell">
+          <div class="tl-week">Week 3–5</div>
+          <div class="tl-phase">Execution</div>
+          <div class="tl-desc">Contracts, briefing, content, review</div>
+        </div>
+        <div class="tl-cell">
+          <div class="tl-week">Week 5–6</div>
+          <div class="tl-phase">Live</div>
+          <div class="tl-desc">Publishing, monitoring, amplification</div>
+        </div>
+        <div class="tl-cell">
+          <div class="tl-week">Week 6+</div>
+          <div class="tl-phase">Reporting</div>
+          <div class="tl-desc">Full analysis &amp; next steps</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section-tag reveal">Begin Phase One</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Ready to <em>Start?</em>
+      </h2>
+      <p class="cta-sub reveal reveal-delay-2">
+        Reach out and we'll kick off your Discovery phase within 48 hours.
+      </p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="mailto:hello@elanhausagency.com" class="btn-primary"
+          >Start Your Brief</a
+        >
+        <a
+          href="services.html"
+          class="btn-outline"
+          style="border-color: rgba(0, 0, 0, 0.2); color: var(--black)"
+          >Our Services</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img
+              src="src/logos/transparent-logo-with-agency.png"
+              alt="Elan Haus Agency"
+            />
+          </div>
+          <p class="footer-tagline">
+            The premier agency connecting the world's boldest creators with the
+            brands that define culture.
+          </p>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="index.html#brands">Partners</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">For Creators</div>
+          <ul class="footer-links">
+            <li><a href="index.html#contact">Apply to Join</a></li>
+            <li><a href="about.html">Our Standards</a></li>
+            <li><a href="index.html#contact">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">For Brands</div>
+          <ul class="footer-links">
+            <li><a href="index.html#contact">Start a Campaign</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 Elan Haus Agency. All rights reserved.
+        </div>
+        <div class="footer-socials">
+          <a href="#">Instagram</a><a href="#">LinkedIn</a
+          ><a href="#">TikTok</a>
+        </div>
+      </div>
+    </footer>
+    <script src="src/main.js"></script>
+  </body>
+</html>

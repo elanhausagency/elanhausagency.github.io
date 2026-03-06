@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Elan Haus Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/index.css" />
+    <style>
+      /* ── ABOUT PAGE ── */
+      .about-story {
+        background: var(--surface);
+      }
+      .about-story-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+        margin-top: 64px;
+      }
+      .about-lead {
+        font-family: var(--sans);
+        font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: var(--white);
+      }
+      .about-lead span {
+        color: var(--blue);
+      }
+      .about-body p {
+        font-size: 0.82rem;
+        line-height: 2.1;
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+      .about-body p strong {
+        color: var(--white);
+        font-weight: 500;
+      }
+
+      /* VALUES */
+      .values {
+        background: var(--black);
+      }
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 64px;
+      }
+      .value-card {
+        background: var(--black);
+        padding: 52px 40px;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .value-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--yellow);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s;
+      }
+      .value-card:hover {
+        background: var(--surface);
+      }
+      .value-card:hover::before {
+        transform: scaleX(1);
+      }
+      .value-letter {
+        font-family: var(--sans);
+        font-size: 5rem;
+        font-weight: 900;
+        color: rgba(228, 255, 75, 0.07);
+        line-height: 1;
+        margin-bottom: 24px;
+        transition: color 0.3s;
+        letter-spacing: -0.04em;
+      }
+      .value-card:hover .value-letter {
+        color: rgba(228, 255, 75, 0.18);
+      }
+      .value-name {
+        font-family: var(--sans);
+        font-size: 1.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+      }
+      .value-desc {
+        font-size: 0.75rem;
+        line-height: 2;
+        color: var(--muted);
+      }
+
+      /* TEAM */
+      .team {
+        background: var(--surface);
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 64px;
+      }
+      .team-card {
+        background: var(--surface2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 44px 32px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+      .team-card:hover {
+        border-color: var(--blue);
+        transform: translateY(-4px);
+      }
+      .team-avatar {
+        width: 64px;
+        height: 64px;
+        background: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+      }
+      .team-init {
+        font-family: var(--sans);
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: var(--white);
+        letter-spacing: -0.02em;
+      }
+      .team-name {
+        font-family: var(--sans);
+        font-size: 1.3rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        margin-bottom: 6px;
+      }
+      .team-title {
+        font-family: var(--sans);
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 20px;
+      }
+      .team-bio {
+        font-size: 0.75rem;
+        line-height: 1.9;
+        color: var(--muted);
+      }
+
+      @media (max-width: 768px) {
+        .about-story-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          margin-top: 40px;
+        }
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav>
+      <a href="index.html" class="nav-logo"
+        ><img
+          src="src/logos/transparent-logo-with-agency.png"
+          alt="Elan Haus Agency"
+      /></a>
+      <ul class="nav-links">
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="index.html#brands">Brands</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Work With Us</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="about.html" class="mobile-link">About</a>
+      <a href="services.html" class="mobile-link">Services</a>
+      <a href="process.html" class="mobile-link">Process</a>
+      <a href="index.html#brands" class="mobile-link">Brands</a>
+      <a href="index.html#contact" class="mobile-cta mobile-link"
+        >Work With Us</a
+      >
+    </div>
+
+    <div class="page-hero">
+      <div>
+        <div class="page-hero-eyebrow">Our Story</div>
+        <h1 class="page-hero-title">Built on<br />Bold <em>Belief</em></h1>
+      </div>
+    </div>
+
+    <section class="about-story">
+      <div class="section-tag reveal">Who We Are</div>
+      <div class="about-story-grid">
+        <div class="about-lead reveal">
+          We are architects of <span>cultural moments</span> — connecting
+          creators with brands ready to leave a mark.
+        </div>
+        <div class="about-body reveal reveal-delay-1">
+          <p>
+            Founded on the belief that authentic influence is the most powerful
+            marketing force in the world, <strong>Elan Haus Agency</strong> was
+            built to bridge the gap between creators and the premium brands that
+            deserve their audiences.
+          </p>
+          <p>
+            Over <strong>12 years</strong>, we've developed a methodology that
+            blends data-driven insight with a deep understanding of culture,
+            aesthetics, and human connection. We don't just find influencers —
+            we find the right voice for every story.
+          </p>
+          <p>
+            Our team works with a curated network of 500+ elite creators across
+            fashion, beauty, lifestyle, travel, and luxury goods. Every
+            partnership we broker is guided by three principles:
+            <strong>alignment, authenticity, and impact.</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="values">
+      <div class="section-tag reveal">What We Stand For</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Our Core <em>Values</em>
+      </h2>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-letter">I</div>
+          <div class="value-name">Integrity</div>
+          <p class="value-desc">
+            Every deal we make is one we'd be proud to put our name on. We
+            represent both creators and brands with equal transparency and care.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-letter">A</div>
+          <div class="value-name">Authenticity</div>
+          <p class="value-desc">
+            We only broker partnerships that feel genuine. If the fit isn't
+            right, we say so. Our reputation is built on honesty, not volume.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-letter">E</div>
+          <div class="value-name">Excellence</div>
+          <p class="value-desc">
+            From the first brief to the final report, every touchpoint is
+            executed with meticulous attention to detail and uncompromising
+            quality.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="team">
+      <div class="section-tag reveal">The People Behind It</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Meet the <em>Team</em>
+      </h2>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-avatar"><div class="team-init">C</div></div>
+          <div class="team-name">Claire Voss</div>
+          <div class="team-title">Founder & CEO</div>
+          <p class="team-bio">
+            Former VP of Brand Partnerships at a global luxury house. Claire
+            founded Elan Haus with a vision to give creators the same respect as
+            the brands they work with.
+          </p>
+        </div>
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-avatar"><div class="team-init">M</div></div>
+          <div class="team-name">Marcus Reid</div>
+          <div class="team-title">Head of Strategy</div>
+          <p class="team-bio">
+            10 years in audience analytics and campaign architecture. Marcus
+            ensures every Elan Haus campaign is backed by data and built to
+            perform.
+          </p>
+        </div>
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-avatar"><div class="team-init">S</div></div>
+          <div class="team-name">Sofía Delara</div>
+          <div class="team-title">Creative Director</div>
+          <p class="team-bio">
+            A former editorial director with a background in fashion and culture
+            media. Sofía shapes the creative vision behind every Elan Haus
+            partnership.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="testimonial">
+      <p class="testimonial-text">
+        "Elan Haus didn't just find us influencers — they found us the right
+        voices. Every benchmark exceeded, every moment felt real."
+      </p>
+      <div class="testimonial-attr">Isabelle Marchetti</div>
+      <div class="testimonial-brand">VP of Brand, Maison Aurore</div>
+    </div>
+
+    <section class="cta-section">
+      <div class="section-tag reveal">Work With Us</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Let's Build<br />Something <em>Lasting</em>
+      </h2>
+      <p class="cta-sub reveal reveal-delay-2">
+        Whether you're a creator or a brand, we'd love to hear from you.
+      </p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="mailto:hello@elanhausagency.com" class="btn-primary"
+          >Get In Touch</a
+        >
+        <a
+          href="services.html"
+          class="btn-outline"
+          style="border-color: rgba(0, 0, 0, 0.2); color: var(--black)"
+          >Our Services</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img
+              src="src/logos/transparent-logo-with-agency.png"
+              alt="Elan Haus Agency"
+            />
+          </div>
+          <p class="footer-tagline">
+            The premier agency connecting the world's boldest creators with the
+            brands that define culture.
+          </p>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="index.html#brands">Partners</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">For Creators</div>
+          <ul class="footer-links">
+            <li><a href="index.html#contact">Apply to Join</a></li>
+            <li><a href="about.html">Our Standards</a></li>
+            <li><a href="index.html#contact">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">For Brands</div>
+          <ul class="footer-links">
+            <li><a href="index.html#contact">Start a Campaign</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 Elan Haus Agency. All rights reserved.
+        </div>
+        <div class="footer-socials">
+          <a href="#">Instagram</a><a href="#">LinkedIn</a
+          ><a href="#">TikTok</a>
+        </div>
+      </div>
+    </footer>
+    <script src="src/main.js"></script>
+  </body>
+</html>
