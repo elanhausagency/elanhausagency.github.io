@@ -64,7 +64,9 @@ body {
     border-color 0.25s;
   opacity: 0;
 }
-
+.footer-logo {
+  max-width: 40%;
+}
 /* ── NOISE GRAIN ── */
 body::after {
   content: "";
