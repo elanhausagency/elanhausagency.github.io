@@ -11,45 +11,38 @@
     />
     <link rel="stylesheet" href="src/index.css" />
     <style>
-      /* ── INDEX-ONLY ── */
+      /* ── INDEX PAGE ONLY ── */
 
       /* HERO */
       .hero {
         min-height: 100vh;
         display: grid;
         grid-template-rows: 1fr auto;
+        padding-top: 68px;
         position: relative;
         overflow: hidden;
-        background: var(--black);
-        padding-top: 73px;
+        background: var(--white);
       }
-      .hero-bg {
+      /* Blue shape - right side */
+      .hero-shape {
         position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            ellipse 55% 60% at 90% 10%,
-            rgba(17, 79, 237, 0.22) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 40% 50% at 10% 90%,
-            rgba(228, 255, 75, 0.06) 0%,
-            transparent 55%
-          );
+        top: 0;
+        right: 0;
+        width: 46%;
+        height: 100%;
+        background: var(--blue);
+        clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+        z-index: 0;
       }
-      .hero-grid-lines {
+      /* Yellow accent block */
+      .hero-shape-yellow {
         position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-          linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.025) 1px,
-            transparent 1px
-          );
-        background-size: 80px 80px;
-        pointer-events: none;
+        bottom: 80px;
+        right: 48px;
+        width: 260px;
+        height: 260px;
+        background: var(--yellow);
+        z-index: 1;
       }
       .hero-content {
         position: relative;
@@ -57,335 +50,350 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 60px 48px 0;
-        max-width: 1200px;
+        padding: 48px 48px 0;
+        max-width: 58%;
       }
       .hero-eyebrow {
         font-family: var(--sans);
         font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.35em;
+        font-weight: 700;
+        letter-spacing: 0.32em;
         text-transform: uppercase;
-        color: var(--yellow);
-        margin-bottom: 28px;
+        color: var(--blue);
+        margin-bottom: 24px;
         display: flex;
         align-items: center;
-        gap: 12px;
-        animation: fadeUp 0.9s 0.1s ease both;
+        gap: 10px;
+        animation: fadeUp 0.8s 0.05s ease both;
       }
       .hero-eyebrow::before {
         content: "";
-        width: 32px;
+        width: 24px;
         height: 2px;
-        background: var(--yellow);
+        background: var(--blue);
       }
       .hero-title {
         font-family: var(--sans);
-        font-size: clamp(4.5rem, 10vw, 12rem);
+        font-size: clamp(4rem, 9vw, 11rem);
         font-weight: 900;
         line-height: 0.88;
         letter-spacing: -0.03em;
         text-transform: uppercase;
-        animation: fadeUp 0.9s 0.15s ease both;
+        color: var(--ink);
+        animation: fadeUp 0.8s 0.1s ease both;
       }
-      .hero-title .outline {
-        -webkit-text-stroke: 2px var(--white);
+      .hero-title .stroke {
+        -webkit-text-stroke: 2.5px var(--ink);
         color: transparent;
       }
-      .hero-title .blue {
-        color: var(--blue);
-      }
-      .hero-sub-row {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        margin-top: 48px;
-        gap: 40px;
-        animation: fadeUp 0.9s 0.25s ease both;
-      }
-      .hero-sub {
-        font-size: 0.82rem;
+      .hero-desc {
+        font-size: 0.88rem;
         line-height: 1.9;
         color: var(--muted);
-        max-width: 360px;
-        letter-spacing: 0.02em;
+        max-width: 800px;
+        margin: 36px 0 40px;
+        animation: fadeUp 0.8s 0.18s ease both;
       }
-      .hero-actions {
+      .hero-btns {
         display: flex;
-        gap: 14px;
-        flex-shrink: 0;
+        gap: 12px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.8s 0.24s ease both;
       }
 
-      /* HERO STATS BAR */
+      /* Hero right side text */
+      .hero-right-label {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        text-align: center;
+      }
+      .hero-right-label span {
+        font-family: var(--sans);
+        font-size: clamp(4rem, 8vw, 9rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.12);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+      }
+
+      /* STATS BAR */
       .hero-stats {
         position: relative;
         z-index: 2;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
-        animation: fadeIn 1s 0.4s ease both;
+        border-top: 1.5px solid var(--ink);
+        animation: fadeIn 1s 0.35s ease both;
       }
       .hero-stat {
-        padding: 32px 48px;
-        border-right: 1px solid rgba(255, 255, 255, 0.07);
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+        padding: 28px 48px;
+        border-right: 1.5px solid var(--ink);
+        background: var(--white);
       }
       .hero-stat:last-child {
         border-right: none;
       }
       .hero-stat-num {
         font-family: var(--sans);
-        font-size: 2.8rem;
+        font-size: 2.6rem;
         font-weight: 900;
         letter-spacing: -0.03em;
         line-height: 1;
-        color: var(--yellow);
-      }
-      .hero-stat-label {
-        font-size: 0.65rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      /* INTRO STRIP */
-      .intro-strip {
-        background: var(--surface);
-        padding: 80px 48px;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 80px;
-        align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .intro-strip-label {
-        font-family: var(--sans);
-        font-size: clamp(1.8rem, 3vw, 3rem);
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: -0.02em;
-        line-height: 1.05;
-      }
-      .intro-strip-label span {
         color: var(--blue);
       }
-      .intro-strip-body {
+      .hero-stat-label {
+        font-size: 0.64rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* INTRO */
+      .intro {
+        background: var(--off);
+        border-bottom: 1.5px solid var(--border);
+        padding: 72px 48px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .intro-headline {
+        font-family: var(--sans);
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        white-space: nowrap;
+      }
+      .intro-headline span {
+        color: var(--blue);
+      }
+      .intro-body {
         font-size: 0.85rem;
         line-height: 2;
         color: var(--muted);
-        max-width: 600px;
+        max-width: 560px;
       }
-      .intro-strip-body strong {
-        color: var(--white);
+      .intro-body strong {
+        color: var(--ink);
         font-weight: 500;
       }
 
-      /* SERVICES PREVIEW */
-      .services-preview {
-        background: var(--black);
+      /* SERVICES */
+      .services {
+        background: var(--white);
       }
-      .services-header {
+      .services-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin-bottom: 64px;
+        margin-bottom: 56px;
       }
       .services-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1.5px solid var(--ink);
       }
-      .svc-card {
-        background: var(--black);
-        padding: 52px 40px;
+      .svc {
+        padding: 48px 36px;
+        border-right: 1.5px solid var(--ink);
+        border-bottom: 1.5px solid var(--ink);
         position: relative;
         overflow: hidden;
-        transition: background 0.3s;
-        cursor: default;
+        background: var(--white);
+        transition: background 0.25s;
       }
-      .svc-card::after {
+      .svc:nth-child(3n) {
+        border-right: none;
+      }
+      .svc:nth-child(n + 4) {
+        border-bottom: none;
+      }
+      .svc::before {
         content: "";
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
+        inset: 0;
         background: var(--blue);
-        transform: scaleX(0);
-        transform-origin: left;
+        transform: translateY(100%);
         transition: transform 0.35s ease;
+        z-index: 0;
       }
-      .svc-card:hover {
-        background: var(--surface);
+      .svc:hover::before {
+        transform: translateY(0);
       }
-      .svc-card:hover::after {
-        transform: scaleX(1);
+      .svc-inner {
+        position: relative;
+        z-index: 1;
       }
       .svc-num {
         font-family: var(--sans);
-        font-size: 4.5rem;
+        font-size: 4rem;
         font-weight: 900;
-        color: rgba(17, 79, 237, 0.08);
+        color: var(--border);
         line-height: 1;
-        margin-bottom: 24px;
-        transition: color 0.3s;
-        letter-spacing: -0.04em;
+        margin-bottom: 20px;
+        letter-spacing: -0.05em;
+        transition: color 0.25s;
       }
-      .svc-card:hover .svc-num {
-        color: rgba(17, 79, 237, 0.2);
+      .svc:hover .svc-num {
+        color: rgba(255, 255, 255, 0.12);
       }
       .svc-name {
         font-family: var(--sans);
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: -0.01em;
-        margin-bottom: 16px;
-        line-height: 1.1;
+        margin-bottom: 14px;
+        transition: color 0.25s;
+      }
+      .svc:hover .svc-name {
+        color: var(--white);
       }
       .svc-desc {
         font-size: 0.75rem;
-        line-height: 2;
+        line-height: 1.9;
         color: var(--muted);
+        transition: color 0.25s;
       }
-      .svc-arrow {
+      .svc:hover .svc-desc {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .svc-link {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        margin-top: 28px;
+        gap: 6px;
+        margin-top: 24px;
         font-family: var(--sans);
-        font-size: 0.62rem;
+        font-size: 0.6rem;
         font-weight: 700;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--blue);
         text-decoration: none;
         opacity: 0;
-        transform: translateX(-8px);
+        transform: translateY(6px);
         transition:
-          opacity 0.3s,
-          transform 0.3s;
+          opacity 0.25s,
+          transform 0.25s,
+          color 0.25s;
       }
-      .svc-card:hover .svc-arrow {
+      .svc:hover .svc-link {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
+        color: var(--yellow);
       }
 
       /* ABOUT STRIP */
       .about-strip {
-        background: var(--surface);
-        padding: 120px 48px;
+        background: var(--off);
+        border-top: 1.5px solid var(--border);
+        border-bottom: 1.5px solid var(--border);
+        padding: 112px 48px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 100px;
+        gap: 80px;
         align-items: center;
       }
-      .about-left .section-title {
-        margin-top: 20px;
-        margin-bottom: 40px;
+      .about-text .section-title {
+        margin-top: 16px;
+        margin-bottom: 32px;
       }
-      .about-left p {
-        font-size: 0.82rem;
+      .about-text p {
+        font-size: 0.84rem;
         line-height: 2;
         color: var(--muted);
-        margin-bottom: 20px;
+        margin-bottom: 18px;
       }
-      .about-left p strong {
-        color: var(--white);
+      .about-text p strong {
+        color: var(--ink);
         font-weight: 500;
       }
       .about-visual {
         position: relative;
-        height: 520px;
+        height: 500px;
       }
-      .about-box-main {
+      .av-blue {
         position: absolute;
         top: 0;
         left: 0;
-        width: 78%;
-        height: 78%;
+        width: 74%;
+        height: 76%;
         background: var(--blue);
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
       }
-      .about-box-main::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: repeating-linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.04) 0px,
-          rgba(255, 255, 255, 0.04) 1px,
-          transparent 1px,
-          transparent 20px
-        );
-      }
-      .about-box-main-inner {
+      .av-blue::after {
+        content: "EH";
         font-family: var(--sans);
-        font-size: 7rem;
+        font-size: 10rem;
         font-weight: 900;
-        color: rgba(255, 255, 255, 0.07);
-        letter-spacing: -0.04em;
-        text-transform: uppercase;
-        position: relative;
-        z-index: 1;
+        color: rgba(255, 255, 255, 0.06);
+        letter-spacing: -0.06em;
       }
-      .about-box-accent {
+      .av-yellow {
         position: absolute;
         bottom: 0;
         right: 0;
-        width: 52%;
-        height: 44%;
+        width: 48%;
+        height: 42%;
         background: var(--yellow);
+        border: 1.5px solid var(--ink);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 4px;
       }
-      .about-box-accent-num {
+      .av-num {
         font-family: var(--sans);
-        font-size: 3.5rem;
+        font-size: 3.2rem;
         font-weight: 900;
-        color: var(--black);
+        color: var(--ink);
         line-height: 1;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.04em;
       }
-      .about-box-accent-text {
+      .av-label {
         font-family: var(--sans);
-        font-size: 0.55rem;
+        font-size: 0.52rem;
         font-weight: 700;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: rgba(0, 0, 0, 0.55);
+        color: rgba(0, 0, 0, 0.5);
         text-align: center;
         padding: 0 16px;
       }
 
       /* BRANDS */
       .brands {
-        background: var(--black);
+        background: var(--white);
       }
       .brands-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        margin-top: 60px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1.5px solid var(--ink);
+        margin-top: 48px;
       }
       .brand-cell {
-        padding: 40px 24px;
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 36px 20px;
+        border-right: 1.5px solid var(--ink);
+        border-bottom: 1.5px solid var(--ink);
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background 0.3s;
+        transition: background 0.25s;
         cursor: default;
       }
       .brand-cell:nth-child(4n) {
@@ -395,16 +403,16 @@
         border-bottom: none;
       }
       .brand-cell:hover {
-        background: var(--surface);
+        background: var(--blue);
       }
       .brand-cell span {
         font-family: var(--sans);
         font-size: 1rem;
         font-weight: 800;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.15);
-        transition: color 0.3s;
+        color: var(--border);
+        transition: color 0.25s;
       }
       .brand-cell:hover span {
         color: var(--white);
@@ -413,74 +421,104 @@
       /* MOBILE INDEX */
       @media (max-width: 768px) {
         .hero {
-          padding-top: 65px;
+          padding-top: 60px;
+        }
+        .hero-shape {
+          width: 100%;
+          clip-path: polygon(0 65%, 100% 50%, 100% 100%, 0% 100%);
+        }
+        .hero-shape-yellow {
+          width: 120px;
+          height: 120px;
+          bottom: 40px;
+          right: 20px;
         }
         .hero-content {
-          padding: 40px 24px 0;
+          max-width: 100%;
+          padding: 32px 20px 0;
         }
         .hero-title {
-          font-size: clamp(3.5rem, 16vw, 7rem);
+          font-size: clamp(3.2rem, 14vw, 6rem);
         }
-        .hero-title .outline {
+        .hero-title .stroke {
           -webkit-text-stroke-width: 1.5px;
         }
-        .hero-sub-row {
+        .hero-right-label {
+          display: none;
+        }
+        .hero-btns {
           flex-direction: column;
           align-items: flex-start;
-          margin-top: 32px;
-          gap: 24px;
-        }
-        .hero-actions {
-          flex-wrap: wrap;
         }
         .hero-stats {
           grid-template-columns: 1fr 1fr 1fr;
         }
         .hero-stat {
-          padding: 24px 20px;
+          padding: 20px 16px;
         }
         .hero-stat-num {
-          font-size: 1.8rem;
+          font-size: 1.7rem;
         }
 
-        .intro-strip {
+        .intro {
           grid-template-columns: 1fr;
-          gap: 24px;
-          padding: 60px 24px;
+          gap: 20px;
+          padding: 56px 20px;
         }
-        .services-header {
+        .intro-headline {
+          white-space: normal;
+          font-size: clamp(2rem, 8vw, 3rem);
+        }
+        .services-top {
           flex-direction: column;
           align-items: flex-start;
-          gap: 24px;
+          gap: 20px;
         }
         .services-grid {
           grid-template-columns: 1fr;
         }
-        .svc-arrow {
+        .svc {
+          border-right: none;
+        }
+        .svc:nth-child(n + 4) {
+          border-bottom: 1.5px solid var(--ink);
+        }
+        .svc:last-child {
+          border-bottom: none;
+        }
+        .svc-link {
           opacity: 1;
           transform: none;
         }
+
         .about-strip {
           grid-template-columns: 1fr;
           gap: 48px;
-          padding: 72px 24px;
+          padding: 72px 20px;
         }
         .about-visual {
-          height: 280px;
+          height: 260px;
           order: -1;
         }
-        .about-box-main {
+        .av-blue {
           width: 72%;
           height: 82%;
         }
+
         .brands-grid {
           grid-template-columns: repeat(2, 1fr);
         }
         .brand-cell:nth-child(4n) {
-          border-right: 1px solid rgba(255, 255, 255, 0.05);
+          border-right: 1.5px solid var(--ink);
         }
         .brand-cell:nth-child(2n) {
           border-right: none;
+        }
+        .brand-cell:nth-last-child(-n + 4) {
+          border-bottom: 1.5px solid var(--ink);
+        }
+        .brand-cell:nth-last-child(-n + 2) {
+          border-bottom: none;
         }
       }
     </style>
@@ -489,7 +527,6 @@
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- NAV -->
     <nav>
       <a href="index.html" class="nav-logo"
         ><img
@@ -508,7 +545,6 @@
       </button>
     </nav>
 
-    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="about.html" class="mobile-link">About</a>
       <a href="services.html" class="mobile-link">Services</a>
@@ -521,25 +557,35 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-grid-lines"></div>
+      <div class="hero-shape"></div>
+      <div class="hero-shape-yellow"></div>
       <div class="hero-content">
         <div class="hero-eyebrow">The Influencer Agency</div>
         <h1 class="hero-title">
-          <span class="outline">Influence</span><br />
-          <span class="blue">Amplified.</span>
+          Influence<br />
+          <span class="stroke">Amplified.</span>
         </h1>
-        <div class="hero-sub-row">
-          <p class="hero-sub">
-            We connect the world's boldest creators with brands ready to make
-            culture — not just content.
-          </p>
-          <div class="hero-actions">
-            <a href="services.html" class="btn-yellow">Our Services</a>
-            <a href="about.html" class="btn-outline">Our Story</a>
-          </div>
+        <p class="hero-desc">
+          Elan Haus Agency is the definitive partner for top-tier talent and
+          rising creators ready to transition from influencers to industry
+          icons. We prioritize strategic career management and high-level
+          negotiation, securing premium brand dealsand long-term partnerships
+          with the world’s most prestigious labels. Our dual expertise as a
+          powerhouse influencer management firm and a luxury event planning
+          agency allows us to offer more than just representation; we curate the
+          entire ecosystem of your brand. From orchestrating high-impact brand
+          trips to designing exclusive industry activations, Elan Haus empowers
+          creators to maximize their earnings and scale their reach through
+          professionalized business strategy and unparalleled experiential
+          storytelling.
+        </p>
+        <div class="hero-btns">
+          <a href="services.html" class="btn-primary">Our Services</a>
+          <a href="about.html" class="btn-outline-dark">Our Story</a>
         </div>
       </div>
+      <br />
+      <div class="hero-right-label"><span>Agency</span></div>
       <div class="hero-stats">
         <div class="hero-stat">
           <div class="hero-stat-num">500+</div>
@@ -576,122 +622,126 @@
       </div>
     </div>
 
-    <!-- INTRO STRIP -->
-    <div class="intro-strip reveal">
-      <div class="intro-strip-label">
+    <!-- INTRO -->
+    <div class="intro reveal">
+      <div class="intro-headline">
         The Right<br /><span>Voice.</span><br />Every Time.
       </div>
-      <p class="intro-strip-body">
+      <p class="intro-body">
         At <strong>Elan Haus Agency</strong>, we believe the most powerful
         marketing isn't bought — it's earned through genuine connection. We
         match brands with creators whose audiences don't just follow them, they
-        trust them. The result? Campaigns that move culture, not just metrics.
+        trust them.
       </p>
     </div>
 
-    <!-- SERVICES PREVIEW -->
-    <section class="services-preview">
-      <div class="services-header reveal">
+    <!-- SERVICES -->
+    <section class="services">
+      <div class="services-top reveal">
         <div>
           <div class="section-tag">What We Do</div>
           <h2 class="section-title">Our <em>Services</em></h2>
         </div>
-        <a href="services.html" class="btn-outline reveal reveal-delay-2"
-          >View All Services</a
+        <a href="services.html" class="btn-outline-dark reveal reveal-delay-2"
+          >View All</a
         >
       </div>
       <div class="services-grid">
-        <div class="svc-card reveal">
-          <div class="svc-num">01</div>
-          <div class="svc-name">Creator Matching</div>
-          <p class="svc-desc">
-            Data-backed, culture-aware creator selection aligned precisely to
-            your brand, audience, and campaign goals.
-          </p>
-          <a href="services.html" class="svc-arrow">Learn More →</a>
+        <div class="svc reveal">
+          <div class="svc-inner">
+            <div class="svc-num">01</div>
+            <div class="svc-name">Creator Matching</div>
+            <p class="svc-desc">
+              Data-backed, culture-aware creator selection aligned precisely to
+              your brand and goals.
+            </p>
+            <a href="services.html" class="svc-link">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal reveal-delay-1">
-          <div class="svc-num">02</div>
-          <div class="svc-name">Campaign Architecture</div>
-          <p class="svc-desc">
-            End-to-end campaign design — creative direction, scheduling,
-            platform strategy, and full-funnel reporting.
-          </p>
-          <a href="services.html" class="svc-arrow">Learn More →</a>
+        <div class="svc reveal reveal-delay-1">
+          <div class="svc-inner">
+            <div class="svc-num">02</div>
+            <div class="svc-name">Campaign Architecture</div>
+            <p class="svc-desc">
+              End-to-end campaign design — creative direction, scheduling, and
+              full-funnel reporting.
+            </p>
+            <a href="services.html" class="svc-link">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal reveal-delay-2">
-          <div class="svc-num">03</div>
-          <div class="svc-name">Deal Negotiation</div>
-          <p class="svc-desc">
-            Expert contract, rights, and exclusivity management ensuring fair
-            terms that inspire long-term loyalty.
-          </p>
-          <a href="services.html" class="svc-arrow">Learn More →</a>
+        <div class="svc reveal reveal-delay-2">
+          <div class="svc-inner">
+            <div class="svc-num">03</div>
+            <div class="svc-name">Deal Negotiation</div>
+            <p class="svc-desc">
+              Expert contract and rights management ensuring terms that inspire
+              long-term loyalty.
+            </p>
+            <a href="services.html" class="svc-link">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal">
-          <div class="svc-num">04</div>
-          <div class="svc-name">Audience Intelligence</div>
-          <p class="svc-desc">
-            Deep analytics on demographics, engagement quality, and fraud
-            detection before you spend a dollar.
-          </p>
-          <a href="services.html" class="svc-arrow">Learn More →</a>
+        <div class="svc reveal">
+          <div class="svc-inner">
+            <div class="svc-num">04</div>
+            <div class="svc-name">Audience Intelligence</div>
+            <p class="svc-desc">
+              Deep analytics on demographics, engagement quality, and fraud
+              detection.
+            </p>
+            <a href="services.html" class="svc-link">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal reveal-delay-1">
-          <div class="svc-num">05</div>
-          <div class="svc-name">Luxury Positioning</div>
-          <p class="svc-desc">
-            Specialist expertise in premium and aspirational brand categories —
-            where the standards are highest.
-          </p>
-          <a href="services.html" class="svc-arrow">Learn More →</a>
+        <div class="svc reveal reveal-delay-1">
+          <div class="svc-inner">
+            <div class="svc-num">05</div>
+            <div class="svc-name">Luxury Positioning</div>
+            <p class="svc-desc">
+              Specialist expertise in premium brand categories where standards
+              are highest.
+            </p>
+            <a href="services.html" class="svc-link">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal reveal-delay-2">
-          <div class="svc-num">06</div>
-          <div class="svc-name">Performance Reporting</div>
-          <p class="svc-desc">
-            Real-time dashboards and board-ready reports covering ROI, EMV,
-            reach, and sentiment analysis.
-          </p>
-          <a href="services.html" class="svc-arrow">Learn More →</a>
+        <div class="svc reveal reveal-delay-2">
+          <div class="svc-inner">
+            <div class="svc-num">06</div>
+            <div class="svc-name">Performance Reporting</div>
+            <p class="svc-desc">
+              Real-time dashboards and board-ready reports covering ROI, EMV,
+              and sentiment.
+            </p>
+            <a href="services.html" class="svc-link">Learn More →</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT PREVIEW -->
+    <!-- ABOUT -->
     <section class="about-strip">
-      <div class="about-left">
+      <div class="about-text">
         <div class="section-tag reveal">Who We Are</div>
         <h2 class="section-title reveal reveal-delay-1">
-          Built on<br /><em>Belief</em> in<br />Real Voice
+          Built on <em>Belief</em><br />in Real Voice
         </h2>
-        <div style="height: 8px"></div>
         <p class="reveal reveal-delay-2">
-          Founded on a single conviction:
-          <strong
-            >authentic influence is the most powerful force in modern
-            marketing.</strong
-          >
-          Elan Haus Agency was built to bridge the gap between creators and the
-          brands that deserve their audiences.
-        </p>
-        <p class="reveal reveal-delay-2">
+          <strong>Elan Haus Agency</strong> was founded on a single conviction:
+          authentic influence is the most powerful force in modern marketing.
           Over 12 years, we've developed a methodology that blends data-driven
-          insight with deep cultural intelligence. We don't find influencers —
-          we find the right voice for every story.
+          insight with deep cultural intelligence.
         </p>
-        <div style="height: 32px"></div>
+        <p class="reveal reveal-delay-2">
+          We don't find influencers — we find the right voice for every story.
+        </p>
+        <div style="height: 28px"></div>
         <a href="about.html" class="btn-primary reveal reveal-delay-3"
           >Read Our Story</a
         >
       </div>
       <div class="about-visual reveal reveal-delay-1">
-        <div class="about-box-main">
-          <div class="about-box-main-inner">EH</div>
-        </div>
-        <div class="about-box-accent">
-          <div class="about-box-accent-num">12+</div>
-          <div class="about-box-accent-text">Years in Premium Partnerships</div>
+        <div class="av-blue"></div>
+        <div class="av-yellow">
+          <div class="av-num">12+</div>
+          <div class="av-label">Years in Premium Partnerships</div>
         </div>
       </div>
     </section>
@@ -736,15 +786,10 @@
         authentic voices — we're your agency.
       </p>
       <div class="cta-actions reveal reveal-delay-3">
-        <a href="mailto:hello@elanhausagency.com" class="btn-primary"
+        <a href="mailto:hello@elanhausagency.com" class="btn-yellow"
           >Get In Touch</a
         >
-        <a
-          href="about.html"
-          class="btn-outline"
-          style="border-color: rgba(0, 0, 0, 0.2); color: var(--black)"
-          >Learn More</a
-        >
+        <a href="about.html" class="btn-outline-white">Learn More</a>
       </div>
     </section>
 
@@ -777,7 +822,6 @@
           <ul class="footer-links">
             <li><a href="index.html#contact">Apply to Join</a></li>
             <li><a href="about.html">Our Standards</a></li>
-            <li><a href="about.html">Creator Network</a></li>
             <li><a href="index.html#contact">Resources</a></li>
           </ul>
         </div>
@@ -786,7 +830,6 @@
           <ul class="footer-links">
             <li><a href="index.html#contact">Start a Campaign</a></li>
             <li><a href="services.html">Our Services</a></li>
-            <li><a href="process.html">Our Process</a></li>
             <li><a href="index.html#contact">Contact Us</a></li>
           </ul>
         </div>
@@ -796,13 +839,11 @@
           © 2026 Elan Haus Agency. All rights reserved.
         </div>
         <div class="footer-socials">
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">TikTok</a>
+          <a href="#">Instagram</a><a href="#">LinkedIn</a
+          ><a href="#">TikTok</a>
         </div>
       </div>
     </footer>
-
     <script src="src/main.js"></script>
   </body>
 </html>

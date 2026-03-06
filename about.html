@@ -11,140 +11,140 @@
     />
     <link rel="stylesheet" href="src/index.css" />
     <style>
-      /* ── ABOUT PAGE ── */
-      .about-story {
-        background: var(--surface);
+      .story {
+        background: var(--white);
       }
-      .about-story-grid {
+      .story-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 80px;
-        align-items: start;
-        margin-top: 64px;
+        margin-top: 56px;
       }
-      .about-lead {
+      .story-lead {
         font-family: var(--sans);
-        font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-        font-weight: 700;
+        font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: -0.01em;
-        line-height: 1.2;
-        color: var(--white);
+        letter-spacing: -0.015em;
+        line-height: 1.15;
       }
-      .about-lead span {
+      .story-lead em {
+        font-style: italic;
         color: var(--blue);
       }
-      .about-body p {
-        font-size: 0.82rem;
+      .story-body p {
+        font-size: 0.84rem;
         line-height: 2.1;
         color: var(--muted);
         margin-bottom: 20px;
       }
-      .about-body p strong {
-        color: var(--white);
+      .story-body p strong {
+        color: var(--ink);
         font-weight: 500;
       }
 
-      /* VALUES */
       .values {
-        background: var(--black);
+        background: var(--off);
+        border-top: 1.5px solid var(--border);
+        border-bottom: 1.5px solid var(--border);
       }
       .values-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        margin-top: 64px;
+        border: 1.5px solid var(--ink);
+        margin-top: 48px;
       }
-      .value-card {
-        background: var(--black);
-        padding: 52px 40px;
+      .val {
+        padding: 48px 36px;
+        border-right: 1.5px solid var(--ink);
         position: relative;
+        overflow: hidden;
+        background: var(--off);
         transition: background 0.3s;
       }
-      .value-card::before {
+      .val:last-child {
+        border-right: none;
+      }
+      .val::after {
         content: "";
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 0;
         right: 0;
-        height: 3px;
+        height: 4px;
         background: var(--yellow);
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.35s;
       }
-      .value-card:hover {
-        background: var(--surface);
+      .val:hover {
+        background: var(--white);
       }
-      .value-card:hover::before {
+      .val:hover::after {
         transform: scaleX(1);
       }
-      .value-letter {
+      .val-letter {
         font-family: var(--sans);
         font-size: 5rem;
         font-weight: 900;
-        color: rgba(228, 255, 75, 0.07);
+        color: var(--border);
         line-height: 1;
-        margin-bottom: 24px;
+        letter-spacing: -0.05em;
+        margin-bottom: 20px;
         transition: color 0.3s;
-        letter-spacing: -0.04em;
       }
-      .value-card:hover .value-letter {
-        color: rgba(228, 255, 75, 0.18);
+      .val:hover .val-letter {
+        color: var(--blue);
       }
-      .value-name {
+      .val-name {
         font-family: var(--sans);
         font-size: 1.4rem;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: -0.01em;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
-      .value-desc {
-        font-size: 0.75rem;
+      .val-desc {
+        font-size: 0.76rem;
         line-height: 2;
         color: var(--muted);
       }
 
-      /* TEAM */
       .team {
-        background: var(--surface);
+        background: var(--white);
       }
       .team-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 64px;
+        gap: 20px;
+        margin-top: 48px;
       }
       .team-card {
-        background: var(--surface2);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 44px 32px;
+        border: 1.5px solid var(--border);
+        padding: 40px 32px;
+        background: var(--white);
         transition:
-          border-color 0.3s,
-          transform 0.3s;
+          border-color 0.25s,
+          transform 0.25s;
       }
       .team-card:hover {
         border-color: var(--blue);
         transform: translateY(-4px);
       }
       .team-avatar {
-        width: 64px;
-        height: 64px;
+        width: 56px;
+        height: 56px;
         background: var(--blue);
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
       }
       .team-init {
         font-family: var(--sans);
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         font-weight: 900;
         color: var(--white);
-        letter-spacing: -0.02em;
       }
       .team-name {
         font-family: var(--sans);
@@ -152,35 +152,42 @@
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: -0.01em;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
-      .team-title {
+      .team-role {
         font-family: var(--sans);
-        font-size: 0.6rem;
-        font-weight: 600;
-        letter-spacing: 0.2em;
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: var(--yellow);
-        margin-bottom: 20px;
+        color: var(--blue);
+        margin-bottom: 18px;
       }
       .team-bio {
-        font-size: 0.75rem;
+        font-size: 0.76rem;
         line-height: 1.9;
         color: var(--muted);
       }
 
       @media (max-width: 768px) {
-        .about-story-grid {
+        .story-grid {
           grid-template-columns: 1fr;
-          gap: 40px;
-          margin-top: 40px;
+          gap: 36px;
+          margin-top: 36px;
         }
         .values-grid {
           grid-template-columns: 1fr;
         }
+        .val {
+          border-right: none;
+          border-bottom: 1.5px solid var(--ink);
+        }
+        .val:last-child {
+          border-bottom: none;
+        }
         .team-grid {
           grid-template-columns: 1fr;
-          gap: 16px;
+          gap: 14px;
         }
       }
     </style>
@@ -188,7 +195,6 @@
   <body>
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursorRing"></div>
-
     <nav>
       <a href="index.html" class="nav-logo"
         ><img
@@ -223,14 +229,14 @@
       </div>
     </div>
 
-    <section class="about-story">
+    <section class="story">
       <div class="section-tag reveal">Who We Are</div>
-      <div class="about-story-grid">
-        <div class="about-lead reveal">
-          We are architects of <span>cultural moments</span> — connecting
-          creators with brands ready to leave a mark.
+      <div class="story-grid">
+        <div class="story-lead reveal">
+          We are architects of <em>cultural moments</em> — connecting creators
+          with brands ready to leave a mark.
         </div>
-        <div class="about-body reveal reveal-delay-1">
+        <div class="story-body reveal reveal-delay-1">
           <p>
             Founded on the belief that authentic influence is the most powerful
             marketing force in the world, <strong>Elan Haus Agency</strong> was
@@ -240,8 +246,7 @@
           <p>
             Over <strong>12 years</strong>, we've developed a methodology that
             blends data-driven insight with a deep understanding of culture,
-            aesthetics, and human connection. We don't just find influencers —
-            we find the right voice for every story.
+            aesthetics, and human connection.
           </p>
           <p>
             Our team works with a curated network of 500+ elite creators across
@@ -259,26 +264,26 @@
         Our Core <em>Values</em>
       </h2>
       <div class="values-grid">
-        <div class="value-card reveal">
-          <div class="value-letter">I</div>
-          <div class="value-name">Integrity</div>
-          <p class="value-desc">
+        <div class="val reveal">
+          <div class="val-letter">I</div>
+          <div class="val-name">Integrity</div>
+          <p class="val-desc">
             Every deal we make is one we'd be proud to put our name on. We
             represent both creators and brands with equal transparency and care.
           </p>
         </div>
-        <div class="value-card reveal reveal-delay-1">
-          <div class="value-letter">A</div>
-          <div class="value-name">Authenticity</div>
-          <p class="value-desc">
+        <div class="val reveal reveal-delay-1">
+          <div class="val-letter">A</div>
+          <div class="val-name">Authenticity</div>
+          <p class="val-desc">
             We only broker partnerships that feel genuine. If the fit isn't
             right, we say so. Our reputation is built on honesty, not volume.
           </p>
         </div>
-        <div class="value-card reveal reveal-delay-2">
-          <div class="value-letter">E</div>
-          <div class="value-name">Excellence</div>
-          <p class="value-desc">
+        <div class="val reveal reveal-delay-2">
+          <div class="val-letter">E</div>
+          <div class="val-name">Excellence</div>
+          <p class="val-desc">
             From the first brief to the final report, every touchpoint is
             executed with meticulous attention to detail and uncompromising
             quality.
@@ -296,7 +301,7 @@
         <div class="team-card reveal">
           <div class="team-avatar"><div class="team-init">C</div></div>
           <div class="team-name">Claire Voss</div>
-          <div class="team-title">Founder & CEO</div>
+          <div class="team-role">Founder & CEO</div>
           <p class="team-bio">
             Former VP of Brand Partnerships at a global luxury house. Claire
             founded Elan Haus with a vision to give creators the same respect as
@@ -306,7 +311,7 @@
         <div class="team-card reveal reveal-delay-1">
           <div class="team-avatar"><div class="team-init">M</div></div>
           <div class="team-name">Marcus Reid</div>
-          <div class="team-title">Head of Strategy</div>
+          <div class="team-role">Head of Strategy</div>
           <p class="team-bio">
             10 years in audience analytics and campaign architecture. Marcus
             ensures every Elan Haus campaign is backed by data and built to
@@ -316,7 +321,7 @@
         <div class="team-card reveal reveal-delay-2">
           <div class="team-avatar"><div class="team-init">S</div></div>
           <div class="team-name">Sofía Delara</div>
-          <div class="team-title">Creative Director</div>
+          <div class="team-role">Creative Director</div>
           <p class="team-bio">
             A former editorial director with a background in fashion and culture
             media. Sofía shapes the creative vision behind every Elan Haus
@@ -344,15 +349,10 @@
         Whether you're a creator or a brand, we'd love to hear from you.
       </p>
       <div class="cta-actions reveal reveal-delay-3">
-        <a href="mailto:hello@elanhausagency.com" class="btn-primary"
+        <a href="mailto:hello@elanhausagency.com" class="btn-yellow"
           >Get In Touch</a
         >
-        <a
-          href="services.html"
-          class="btn-outline"
-          style="border-color: rgba(0, 0, 0, 0.2); color: var(--black)"
-          >Our Services</a
-        >
+        <a href="services.html" class="btn-outline-white">Our Services</a>
       </div>
     </section>
 
