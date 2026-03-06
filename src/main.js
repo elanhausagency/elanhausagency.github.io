@@ -73,25 +73,6 @@
   document.addEventListener("mousemove", onFirstMove);
 })();
 
-// ── HAMBURGER ──
-(function initHamburger() {
-  var hamburger = document.getElementById("hamburger");
-  var mobileMenu = document.getElementById("mobileMenu");
-  if (!hamburger || !mobileMenu) return;
-  hamburger.addEventListener("click", function () {
-    var isOpen = mobileMenu.classList.toggle("open");
-    hamburger.classList.toggle("open", isOpen);
-    document.body.style.overflow = isOpen ? "hidden" : "";
-  });
-  document.querySelectorAll(".mobile-link").forEach(function (link) {
-    link.addEventListener("click", function () {
-      mobileMenu.classList.remove("open");
-      hamburger.classList.remove("open");
-      document.body.style.overflow = "";
-    });
-  });
-})();
-
 // ── SCROLL REVEAL ──
 (function initReveal() {
   var reveals = document.querySelectorAll(".reveal");
