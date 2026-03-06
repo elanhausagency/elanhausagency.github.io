@@ -123,6 +123,16 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
   });
 });
 
+function renderNav() {
+  fetch("navbar.html")
+    .then((r) => r.text())
+    .then(
+      (html) =>
+        (document.getElementById("navbar-placeholder").innerHTML = html),
+    );
+}
+renderNav();
+
 function renderFooter() {
   fetch("footer.html")
     .then((r) => r.text())
