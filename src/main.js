@@ -93,7 +93,7 @@
   });
 })();
 // ── HAMBURGER ──
-(function initHamburger() {
+function initHamburger() {
   var hamburger = document.getElementById("hamburger");
   var mobileMenu = document.getElementById("mobileMenu");
   if (!hamburger || !mobileMenu) return;
@@ -109,7 +109,7 @@
       document.body.style.overflow = "";
     });
   });
-})();
+}
 // ── SMOOTH SCROLL ──
 document.querySelectorAll('a[href^="#"]').forEach(function (a) {
   a.addEventListener("click", function (e) {
