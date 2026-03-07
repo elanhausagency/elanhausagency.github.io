@@ -3,80 +3,732 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elan Haus Agency — Influence, Amplified</title>
+    <title>Contact — Elan Haus Agency</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="src/index.css" />
+    <style>
+      /* ── HERO ── */
+      .contact-hero {
+        min-height: 52vh;
+        display: flex;
+        align-items: flex-end;
+        padding: 140px 48px 64px;
+        position: relative;
+        overflow: hidden;
+        background: var(--black);
+      }
+      .contact-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 72px 72px;
+        pointer-events: none;
+      }
+      .contact-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 60% 70% at 85% 20%,
+          rgba(17, 79, 237, 0.28) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-eyebrow {
+        font-family: var(--sans);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        animation: fadeUp 0.8s 0.05s ease both;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 32px;
+        height: 2px;
+        background: var(--yellow);
+      }
+      .hero-title {
+        font-family: var(--sans);
+        font-size: clamp(4rem, 10vw, 11rem);
+        font-weight: 900;
+        line-height: 0.88;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        animation: fadeUp 0.8s 0.12s ease both;
+      }
+      .hero-title .outline {
+        display: block;
+        -webkit-text-stroke: 2.5px var(--white);
+        color: transparent;
+      }
+      .hero-title .filled {
+        display: block;
+        color: var(--blue);
+      }
+
+      /* ── BODY LAYOUT ── */
+      .contact-body {
+        background: var(--black);
+        padding: 80px 48px 120px;
+        display: grid;
+        grid-template-columns: 1fr 1.55fr;
+        gap: 80px;
+        align-items: start;
+        position: relative;
+      }
+      .contact-body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.015) 1px,
+            transparent 1px
+          );
+        background-size: 72px 72px;
+        pointer-events: none;
+      }
+
+      /* ── LEFT INFO ── */
+      .contact-info {
+        position: sticky;
+        top: 100px;
+        z-index: 1;
+      }
+      .info-tag {
+        font-family: var(--sans);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+      .info-tag::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--yellow);
+      }
+      .info-heading {
+        font-family: var(--sans);
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.025em;
+        line-height: 0.95;
+        margin-bottom: 28px;
+      }
+      .info-heading .out {
+        display: block;
+        -webkit-text-stroke: 1.5px var(--white);
+        color: transparent;
+      }
+      .info-heading .fill {
+        display: block;
+        color: var(--blue);
+      }
+      .info-desc {
+        font-size: 0.82rem;
+        line-height: 1.95;
+        color: var(--muted);
+        margin-bottom: 48px;
+        max-width: 320px;
+      }
+      .info-details {
+        display: flex;
+        flex-direction: column;
+      }
+      .info-detail {
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .info-detail:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .detail-label {
+        font-family: var(--sans);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .detail-value {
+        font-family: var(--sans);
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--white);
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      a.detail-value:hover {
+        color: var(--yellow);
+      }
+      .detail-socials {
+        display: flex;
+        gap: 20px;
+      }
+      .detail-socials a {
+        font-family: var(--sans);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .detail-socials a:hover {
+        color: var(--yellow);
+      }
+
+      /* ── FORM PANEL ── */
+      .contact-form-wrap {
+        position: relative;
+        z-index: 1;
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 52px;
+      }
+      .form-heading {
+        font-family: var(--sans);
+        font-size: 1.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        color: var(--white);
+        padding-bottom: 28px;
+        margin-bottom: 32px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .form-heading::before {
+        content: "";
+        width: 4px;
+        height: 1.5rem;
+        background: var(--blue);
+        flex-shrink: 0;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      label {
+        font-family: var(--sans);
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .form-group:focus-within > label {
+        color: var(--yellow);
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+        padding: 13px 16px;
+        font-family: var(--body);
+        font-size: 0.84rem;
+        color: var(--white);
+        outline: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        width: 100%;
+        resize: vertical;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(102, 102, 96, 0.4);
+      }
+      input:focus,
+      textarea:focus {
+        border-color: rgba(255, 255, 255, 0.1);
+        border-bottom-color: var(--blue);
+        background: rgba(17, 79, 237, 0.04);
+      }
+
+      /* ── CHECKBOXES ── */
+      .checkbox-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .check-pill {
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+      }
+      .check-pill input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .pill-inner {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+        font-family: var(--sans);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .pill-box {
+        width: 14px;
+        height: 14px;
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.2s;
+      }
+      .pill-box::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: var(--yellow);
+        display: none;
+      }
+      .check-pill input:checked + .pill-inner {
+        border-color: var(--yellow);
+        background: rgba(228, 255, 75, 0.05);
+        color: var(--white);
+      }
+      .check-pill input:checked + .pill-inner .pill-box {
+        border-color: var(--yellow);
+      }
+      .check-pill input:checked + .pill-inner .pill-box::after {
+        display: block;
+      }
+
+      /* ── CONDITIONAL FIELDS ── */
+      .cond-field {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition:
+          max-height 0.3s ease,
+          opacity 0.25s ease,
+          margin 0.3s ease;
+        margin-top: 0;
+      }
+      .cond-field.show {
+        max-height: 100px;
+        opacity: 1;
+        margin-top: 14px;
+      }
+
+      /* ── SUBMIT ── */
+      .form-footer {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+      }
+      .btn-send {
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--black);
+        background: var(--yellow);
+        border: none;
+        padding: 16px 48px;
+        cursor: pointer;
+        transition:
+          filter 0.2s,
+          transform 0.15s;
+        flex-shrink: 0;
+      }
+      .btn-send:hover {
+        filter: brightness(1.07);
+        transform: translateY(-2px);
+      }
+      .btn-send:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+      }
+      #form-status {
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+      }
+      #form-status.error {
+        color: #ff5a5a;
+      }
+
+      /* ── SUCCESS ── */
+      .form-success {
+        display: none;
+        padding: 64px 20px;
+        text-align: center;
+      }
+      .form-success.show {
+        display: block;
+      }
+      .success-mark {
+        width: 72px;
+        height: 72px;
+        background: var(--yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 28px;
+        font-size: 2rem;
+        color: var(--black);
+        font-weight: 900;
+      }
+      .success-title {
+        font-family: var(--sans);
+        font-size: 2.4rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        margin-bottom: 14px;
+      }
+      .success-title span {
+        color: var(--blue);
+      }
+      .success-sub {
+        font-size: 0.82rem;
+        line-height: 1.9;
+        color: var(--muted);
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 900px) {
+        .contact-hero {
+          padding: 110px 24px 52px;
+        }
+        .hero-title .outline {
+          -webkit-text-stroke-width: 1.5px;
+        }
+        .contact-body {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          padding: 56px 24px 80px;
+        }
+        .contact-info {
+          position: static;
+        }
+        .contact-form-wrap {
+          padding: 28px 20px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- NAV -->
-    <div id="navbar-placeholder"></div>
+    <div id="nav-placeholder"></div>
 
-    <section class="contact-section">
-      <div class="section-tag">Get In Touch</div>
-      <h2 class="section-title">Let's <em>Talk</em></h2>
+    <!-- HERO -->
+    <div class="contact-hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">Get In Touch</div>
+        <h1 class="hero-title">
+          <span class="outline">Let's</span>
+          <span class="filled">Connect.</span>
+        </h1>
+      </div>
+    </div>
 
-      <form
-        id="contact-form"
-        action="https://formspree.io/f/YOUR_FORM_ID"
-        method="POST"
-      >
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Your name"
-              required
-            />
+    <!-- CONTACT BODY -->
+    <div class="contact-body">
+      <!-- LEFT: INFO -->
+      <div class="contact-info reveal">
+        <div class="info-tag">Contact Us</div>
+        <h2 class="info-heading">
+          <span class="out">We'd Love</span>
+          <span class="fill">To Hear</span>
+          <span class="out">From You</span>
+        </h2>
+        <p class="info-desc">
+          Whether you're a brand ready to launch or a creator looking for the
+          right partnership — fill out the form and we'll be in touch within 48
+          hours.
+        </p>
+        <div class="info-details">
+          <div class="info-detail">
+            <span class="detail-label">Email</span>
+            <a href="mailto:hello@elanhausagency.com" class="detail-value"
+              >hello@elanhausagency.com</a
+            >
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="your@email.com"
-              required
-            />
+          <div class="info-detail">
+            <span class="detail-label">Phone</span>
+            <a href="tel:+11234567890" class="detail-value"
+              >+1 (123) 456-7890</a
+            >
+          </div>
+          <div class="info-detail">
+            <span class="detail-label">Follow Us</span>
+            <div class="detail-socials">
+              <a href="#">Instagram</a>
+              <a href="#">LinkedIn</a>
+              <a href="#">TikTok</a>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="company">Company</label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            placeholder="Your company"
-          />
+      <!-- RIGHT: FORM -->
+      <div class="contact-form-wrap reveal reveal-delay-1">
+        <div id="form-container">
+          <div class="form-heading">Send Us a Message</div>
+
+          <form
+            id="contact-form"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSftt6F9swYNp4AsmH3g3m6dJD3BJ07U2Sl98mL1sTxq3cNMJg/formResponse"
+            method="POST"
+            target="hidden-iframe"
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label for="inp-name">Full Name *</label>
+                <input
+                  type="text"
+                  id="inp-name"
+                  name="entry.2029333471"
+                  placeholder="Jane Smith"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="inp-company">Company</label>
+                <input
+                  type="text"
+                  id="inp-company"
+                  name="entry.1309736316"
+                  placeholder="Your company"
+                />
+              </div>
+            </div>
+
+            <!-- Contact method -->
+            <div class="form-group">
+              <label>Preferred Contact Method *</label>
+              <div class="checkbox-row">
+                <label class="check-pill">
+                  <input
+                    type="checkbox"
+                    id="chk-email"
+                    name="entry.367451102"
+                    value="Email"
+                  />
+                  <div class="pill-inner">
+                    <span class="pill-box"></span>Email
+                  </div>
+                </label>
+                <label class="check-pill">
+                  <input
+                    type="checkbox"
+                    id="chk-phone"
+                    name="entry.367451102"
+                    value="Phone"
+                  />
+                  <div class="pill-inner">
+                    <span class="pill-box"></span>Phone
+                  </div>
+                </label>
+              </div>
+
+              <!-- Conditional: Email -->
+              <div class="cond-field" id="field-email">
+                <div class="form-group" style="margin-bottom: 0">
+                  <label for="inp-email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="inp-email"
+                    name="entry.1967836022"
+                    placeholder="jane@company.com"
+                  />
+                </div>
+              </div>
+
+              <!-- Conditional: Phone -->
+              <div class="cond-field" id="field-phone">
+                <div class="form-group" style="margin-bottom: 0">
+                  <label for="inp-phone">Phone Number *</label>
+                  <input
+                    type="tel"
+                    id="inp-phone"
+                    name="entry.1634633511"
+                    placeholder="+1 (555) 000-0000"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="inp-message">Message *</label>
+              <textarea
+                id="inp-message"
+                name="entry.1750161291"
+                rows="5"
+                placeholder="Tell us about your brand, campaign goals, or what you're looking for..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn-send" id="btn-send">
+                Send Message
+              </button>
+              <span id="form-status"></span>
+            </div>
+          </form>
         </div>
 
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            placeholder="Tell us about your brand..."
-            required
-          ></textarea>
+        <!-- SUCCESS STATE -->
+        <div class="form-success" id="form-success">
+          <div class="success-mark">✓</div>
+          <div class="success-title">Message <span>Sent!</span></div>
+          <p class="success-sub">
+            Thanks for reaching out. A member of the Elan Haus team will be in
+            touch within 48 hours.
+          </p>
         </div>
+      </div>
+    </div>
 
-        <button type="submit" class="btn-primary">Send Message</button>
-        <p id="form-status"></p>
-      </form>
-    </section>
+    <iframe
+      name="hidden-iframe"
+      id="hidden-iframe"
+      style="display: none"
+    ></iframe>
 
     <div id="footer-placeholder"></div>
+
     <script src="src/main.js"></script>
+    <script>
+      //   // ── LOAD NAV + FOOTER ──
+      //   function loadFragment(id, file, cb) {
+      //     fetch(file)
+      //       .then((r) => r.text())
+      //       .then((html) => {
+      //         document.getElementById(id).innerHTML = html;
+      //         if (cb) cb();
+      //       });
+      //   }
+      //   loadFragment("nav-placeholder", "nav.html", function () {
+      //     if (typeof initHamburger === "function") initHamburger();
+      //   });
+      //   loadFragment("footer-placeholder", "footer.html");
+
+      // ── CONDITIONAL FIELDS ──
+      const chkEmail = document.getElementById("chk-email");
+      const chkPhone = document.getElementById("chk-phone");
+      const fldEmail = document.getElementById("field-email");
+      const fldPhone = document.getElementById("field-phone");
+      const inpEmail = document.getElementById("inp-email");
+      const inpPhone = document.getElementById("inp-phone");
+
+      function updateFields() {
+        fldEmail.classList.toggle("show", chkEmail.checked);
+        fldPhone.classList.toggle("show", chkPhone.checked);
+        inpEmail.required = chkEmail.checked;
+        inpPhone.required = chkPhone.checked;
+        if (!chkEmail.checked) inpEmail.value = "";
+        if (!chkPhone.checked) inpPhone.value = "";
+      }
+      chkEmail.addEventListener("change", updateFields);
+      chkPhone.addEventListener("change", updateFields);
+
+      // ── FORM SUBMIT ──
+      const form = document.getElementById("contact-form");
+      const btnSend = document.getElementById("btn-send");
+      const status = document.getElementById("form-status");
+      const iframe = document.getElementById("hidden-iframe");
+      const formWrap = document.getElementById("form-container");
+      const formOk = document.getElementById("form-success");
+
+      form.addEventListener("submit", function (e) {
+        if (!chkEmail.checked && !chkPhone.checked) {
+          e.preventDefault();
+          status.textContent = "Please select at least one contact method.";
+          status.className = "error";
+          return;
+        }
+        btnSend.disabled = true;
+        btnSend.textContent = "Sending...";
+        status.textContent = "";
+        status.className = "";
+      });
+
+      iframe.addEventListener("load", function () {
+        if (btnSend.disabled) {
+          formWrap.style.display = "none";
+          formOk.classList.add("show");
+        }
+      });
+    </script>
   </body>
 </html>
